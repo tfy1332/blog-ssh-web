@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		<bean name="certificateAction" class="com.ssh.action.certificate.CertificateAction"  >
+		<property name="userService" ref="userService"></property>
+		<property name="eduService" ref="eduService"></property>
+		<property name="workService" ref="workService"></property>
+		<property name="projectService" ref="projectService"></property>
+		<property name="certificateService" ref="certificateService"></property>
+	</bean>
+	<bean name="certificateService" class="com.ssh.service.impl.certificate.CertificateServiceImpl" >
+	<property name="certificateDAO" ref="certificateDAO"></property>
+	</bean>
+	<bean name="certificateDAO" class="com.ssh.DAO.impl.certificate.CertificateDaoImpl" >
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+</beans>

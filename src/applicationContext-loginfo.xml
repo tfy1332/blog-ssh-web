@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		<bean name="logInfoAction" class="com.ssh.action.loginfo.LogInfoAction"  >
+		<property name="logInfoService" ref="logInfoService"></property>
+	</bean>
+	<bean name="logInfoService" class="com.ssh.service.impl.loginfo.LogInfoServiceImpl" >
+	<property name="logInfoDAO" ref="logInfoDAO"></property>
+	</bean>
+	<bean name="logInfoDAO" class="com.ssh.DAO.impl.loginfo.LogInfoDaoImpl" >
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+</beans>

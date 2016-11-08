@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		<bean name="forwardAction" class="com.ssh.action.forward.ForwardAction"  >
+		<property name="userService" ref="userService"></property>
+		<property name="logInfoService" ref="logInfoService"></property>
+	</bean>
+	<bean name="userService" class="com.ssh.service.impl.user.UserServiceImpl" >
+	<property name="userDAO" ref="userDAO"></property>
+	</bean>
+	
+</beans>

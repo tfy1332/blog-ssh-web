@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="struts-default.xml" />
+<!-- 
+<constant name="struts.objectFactory" value="spring" />
+ <constant name="struts.objectFactory" value="spring" />
+
+ -->
+ 
+       <!--指定Struts 2默认的ObjectFactory Bean,该属性默认值是spring. -->  
+ <constant name="struts.objectFactory" value="spring" />  
+  
+       <!--指定Spring框架的自动装配模式, 该属性的默认值是name, 即默认根据Bean的name属性自动装配. -->  
+ <constant name="struts.objectFactory.spring.autoWire" value="name" />  
+ 
+ 
+ <!-- ssh图片上传 item获取为null [] 解决方案  -->
+  <constant name="struts.action.excludePattern" value="/servlet/.*"/>
+   
+    <include file="struts-user.xml"></include>
+     <package name="struts2" extends="struts-default">
+		     <interceptors> 
+		     <!-- 定义了一个名为authority的拦截器 --> 
+		  <interceptor name="authority" class="com.ssh.util.LoginInterceptor"/> <!--上面自定义的拦截器类-->
+		  <interceptor-stack name="myDefault">
+		   <interceptor-ref name="authority"> <!-- 引用拦截器  -->
+		    <param name="includeMethods">login,logout</param> <!-- 设置需要拦截的方法，多个以逗号隔开 -->
+		   </interceptor-ref>
+		   <interceptor-ref name="defaultStack"></interceptor-ref>
+		  </interceptor-stack>
+		 </interceptors>
+		 <default-interceptor-ref name="myDefault"></default-interceptor-ref>
+    	<!--配置应用所使用的连接器-->
+        <action name="login!*" class="loginAction" method="{1}">
+            <result name="success">/index.jsp</result>  
+            <result name="Adminsuccess">/WEB-INF/jsp/houtai/admin_index.jsp</result>
+            <result name="mobile">/mobile.jsp</result>
+            <result name="input">/login.jsp</result>
+            <result name="adminLoginUI">/WEB-INF/jsp/houtai/admin_login_163.jsp</result>
+            <result name="error">/login.jsp</result>
+             <result name="logout">/toIndex.jsp</result>
+            <result name="redirectUrl">/redirectUrl.jsp</result>
+        </action>
+    </package>
+        <include file="struts-user.xml"></include>
+        <include file="struts-forward.xml"></include>
+        <include file="struts-upload.xml"></include>
+        <include file="struts-article.xml"></include>
+        <include file="struts-loginfo.xml"></include>
+        <include file="struts-work.xml"></include>
+        <include file="struts-education.xml"></include>
+        <include file="struts-project.xml"></include>
+        <include file="struts-certificate.xml"></include>
+</struts>
