@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		<bean name="articleAction" class="com.ssh.action.user.ArticleAction"  >
+		<property name="articleService" ref="articleService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="logInfoService" ref="logInfoService"></property>
+	</bean>
+	<bean name="articleService" class="com.ssh.service.impl.user.ArticleServiceImpl" >
+	<property name="articleDAO" ref="articleDAO"></property>
+	</bean>
+	<bean name="articleDAO" class="com.ssh.DAO.impl.user.ArticleDaoImpl" >
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+</beans>
