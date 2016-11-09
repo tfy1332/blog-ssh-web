@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<!-- 加载Srping配置文件 -->
+	<!--
+		* [ <context-param></context-param ] =>用来设定web站台的环境参数 * [
+		<param-name></param-name> ] （子元素）=> 用来指定参数的名称 * [
+		<param-value></param-value> ] （子元素）=> 用来设定参数值 * ************ *
+		从类路径下加载spring的配置文件, 多个配置文件可以用逗号和空格区分 * classpath: 关键字特指类路径下加载
+		********************
+	-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/applicationContext*.xml</param-value>
+	</context-param>
+		<!-- 用于初始化Spring容器的Listener -->
+	<!--
+		* [<listener></listener>]=>用来设定监听接口 *
+		[<listener-class></listener-class>](子元素)=>定义Listener的类名称 * ******* *
+		负责启动spring的监听器 * 它将引用处的上下文参数获得spring配置文件地址 *
+		指定Spring提供的ContextLoaderListener Web 容器监听器, *
+		该监听器在web容器启动时自动运行并且根据ContextLoaderListener参数 *
+		获取Spring配置文件,并启动Spring容器。 **************
+	-->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- 加载struts2核心 -->
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>
+            org.apache.struts2.dispatcher.FilterDispatcher
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    	<welcome-file-list> 
+	<welcome-file>login.jsp</welcome-file>   
+     </welcome-file-list>
+	</web-app>
